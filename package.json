@@ -3,8 +3,9 @@
   "version": "0.0.5",
   "description": "test pony generator",
   "private": "true",
-  "main": "src/index.js",
+  "main": "src/index.ts",
   "scripts": {
+    "start": "ts-node server.ts",
     "test": "nyc mocha ",
     "release": "standard-version",
     "lint": "eslint --no-error-on-unmatched-pattern --ext .js --ext .ts server.js \"src/**/*\" \"test/**/*\""
@@ -22,6 +23,8 @@
   "devDependencies": {
     "@commitlint/cli": "12.0.1",
     "@commitlint/config-conventional": "12.0.1",
+    "@types/express": "4.17.11",
+    "@types/node": "14.14.31",
     "@typescript-eslint/eslint-plugin": "4.16.1",
     "@typescript-eslint/parser": "4.16.1",
     "chai": "4.3.3",
