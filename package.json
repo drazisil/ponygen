@@ -1,6 +1,6 @@
 {
   "name": "ponygen",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "test pony generator",
   "main": "src/index.js",
   "scripts": {
