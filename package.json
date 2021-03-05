@@ -4,7 +4,9 @@
   "description": "test pony generator",
   "main": "src/index.js",
   "scripts": {
-    "test": "nyc mocha "
+    "test": "nyc mocha ",
+    "release": "standard-version",
+    "lint": "eslint --no-error-on-unmatched-pattern --ext .js --ext .ts server.js \"src/**/*\" \"test/**/*\""
   },
   "repository": {
     "type": "git",
