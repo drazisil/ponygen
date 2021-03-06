@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.1](https://github.com/drazisil/ponygen/compare/v1.0.0...v1.0.1) (2021-03-06)
+
+
+### Bug Fixes
+
+* **api:** test coverage ([767d80e](https://github.com/drazisil/ponygen/commit/767d80e7aab043d5b211f9407e4e876dffdab7c9))
+
 ## [1.0.0](https://github.com/drazisil/ponygen/compare/v0.0.9...v1.0.0) (2021-03-06)
 
 ### [0.0.9](https://github.com/drazisil/ponygen/compare/v0.0.8...v0.0.9) (2021-03-06)
