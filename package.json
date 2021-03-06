@@ -6,7 +6,7 @@
   "main": "src/index.ts",
   "scripts": {
     "start": "ts-node server.ts",
-    "0-pretest": "tsc -p .",
+    "pretest": "npm run lint",
     "test": "jest",
     "test:watch": "jest --watch --detectOpenHandles",
     "release": "standard-version",
