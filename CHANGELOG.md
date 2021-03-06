@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.9](https://github.com/drazisil/ponygen/compare/v0.0.8...v0.0.9) (2021-03-06)
+
+
+### Features
+
+* **api:** add raw endpoint for pony ([00f1505](https://github.com/drazisil/ponygen/commit/00f1505346f5fba5c3225c7d353f7f46f774a715))
+
 ### [0.0.8](https://github.com/drazisil/ponygen/compare/v0.0.7...v0.0.8) (2021-03-06)
 
 ### [0.0.7](https://github.com/drazisil/ponygen/compare/v0.0.6...v0.0.7) (2021-03-06)
