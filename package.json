@@ -71,6 +71,12 @@
     "coverage": true,
     "reporter": [
       "spec"
-    ]
+    ],
+    "coverage-report": [
+      "cobertura",
+      "html",
+      "text"
+    ],
+    "browser": false
   }
 }
