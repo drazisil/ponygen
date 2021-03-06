@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1](https://github.com/drazisil/ponygen/compare/v1.1.0...v1.1.1) (2021-03-06)
+
+
+### Bug Fixes
+
+* **test:** add catch handlers to tests ([40fb85a](https://github.com/drazisil/ponygen/commit/40fb85a71acbb6b8e715be0b508c31efb5110461))
+* add redix ([87e0a58](https://github.com/drazisil/ponygen/commit/87e0a584361fced9368d277234e48c8aa108e5a2))
+
+## [1.1.0](https://github.com/drazisil/ponygen/compare/v1.0.1...v1.1.0) (2021-03-06)
+
+
+### Features
+
+* create ponygen class ([dfd60bf](https://github.com/drazisil/ponygen/commit/dfd60bf602d61fd30fd044249e75cb0294e0425e))
+
 ### [1.0.1](https://github.com/drazisil/ponygen/compare/v1.0.0...v1.0.1) (2021-03-06)
 
 
