@@ -7,7 +7,7 @@
   "scripts": {
     "start": "ts-node server.ts",
     "pretest": "npm run lint",
-    "test": "jest",
+    "test": "jest --detectOpenHandles",
     "test:watch": "jest --watch --detectOpenHandles",
     "release": "standard-version",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
