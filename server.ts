@@ -3,7 +3,7 @@ import PonyGen from './src'
 let port:number
 
 if (process.env.PORT) {
-  port = Number.parseInt(process.env.PORT);
+  port = Number.parseInt(process.env.PORT, 10);
 } else {
   port = 3000
 }
