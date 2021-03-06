@@ -23,3 +23,27 @@ it("API", async done => {
       done()
     });
   })
+
+describe('Raw API', () => {
+  it("home", async done => {
+    request(server)
+      .get("/api/raw")
+      .expect(200)
+      .end((err, res) => {
+        if (err) throw err;
+        expect(res.text).toContain("Raw")
+      });
+  done()})
+
+  it("pony", async done => {
+    request(server)
+      .get("/api/raw/pony/1")
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .end((err, res) => {
+        if (err) throw err;
+        expect(res.body.ID).toEqual(1)
+      });
+  done()})  
+})
+
