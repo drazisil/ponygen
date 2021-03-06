@@ -7,19 +7,29 @@ it("Server - can start and stop", async (done) => {
   expect(await server.listen(2001)).resolves
   expect(server.isRunning()).toBeTruthy;
 
-  await server.close().then(() => {
-    expect(server.isRunning()).toBeFalsy;
-    done();
-  });
+  await server
+    .close()
+    .then(() => {
+      expect(server.isRunning()).toBeFalsy;
+      done();
+    })
+    .catch((err) => {
+      expect(err).toBeFalsy;
+    });
 
 });
 
 it("Server - can start", async (done) => {
   const server = new PonyGen();
-  server.listen(1818).then(() => {
-    server.close();
-    done();
-  })  
+  server
+    .listen(1818)
+    .then(() => {
+      server.close();
+      done();
+    })
+    .catch((err) => {
+      expect(err).toBeFalsy;
+    });
 });
 
 it("Server - can throw on bad close", async (done) => {
