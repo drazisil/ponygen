@@ -2,8 +2,8 @@ import express from 'express'
 import { apiHome, apiRawHome, apiRawPony } from './api'
 const router = express.Router()
 
-router.use('/api/raw/pony/:id', apiRawPony)
-router.use('/api/raw', apiRawHome)
+router.get('/api/raw/pony/:id', apiRawPony)
+router.get('/api/raw', apiRawHome)
 router.use('/api', apiHome)
 
 // define the about route
