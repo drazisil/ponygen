@@ -1,6 +1,6 @@
 {
   "name": "ponygen",
-  "version": "0.0.9",
+  "version": "1.0.0",
   "description": "test pony generator",
   "private": "true",
   "main": "src/index.ts",
