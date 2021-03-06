@@ -8,6 +8,7 @@
     "start": "ts-node server.ts",
     "0-pretest": "tsc -p .",
     "test": "jest",
+    "test:watch": "jest --watch --detectOpenHandles",
     "release": "standard-version",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
