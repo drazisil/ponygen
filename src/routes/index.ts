@@ -1,7 +1,9 @@
 import express from 'express'
-import { apiHome } from './api'
+import { apiHome, apiRawHome, apiRawPony } from './api'
 const router = express.Router()
 
+router.get('/api/raw/pony/:id', apiRawPony)
+router.get('/api/raw', apiRawHome)
 router.use('/api', apiHome)
 
 // define the about route
