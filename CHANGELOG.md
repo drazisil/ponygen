@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.7](https://github.com/drazisil/ponygen/compare/v0.0.6...v0.0.7) (2021-03-06)
+
+
+### Features
+
+* **api:** add router for /api ([0af8f8a](https://github.com/drazisil/ponygen/commit/0af8f8a7825feaf1cec4ae5d0e68e88bf1ce18b4))
+* add rounts and tests. switch to tap ([311b36b](https://github.com/drazisil/ponygen/commit/311b36b6d19c3b2534a2c3ebc7485b759c044849))
+
 ### [0.0.6](https://github.com/drazisil/ponygen/compare/v0.0.5...v0.0.6) (2021-03-05)
 
 
