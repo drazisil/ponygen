@@ -2,7 +2,7 @@ import express from "express";
 import { Server } from "node:http";
 import routeHome from "./routes";
 
-export default class PonyGen {
+export default class WebService {
   _isRunning = false;
   _express = express();
   _server: null | Server = null;

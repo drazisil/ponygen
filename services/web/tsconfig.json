@@ -69,7 +69,7 @@
     "forceConsistentCasingInFileNames": true        /* Disallow inconsistently-cased references to the same file. */
   },
   "include": [
-    "server.ts",
+    "src/services/web/app.ts",
     "./src/**/*"
   ],
   "exclude": ["./built/**/*"]

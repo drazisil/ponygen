@@ -1,4 +1,4 @@
-import PonyGen from './src'
+import WebService from './src'
 
 let port:number
 
@@ -8,7 +8,7 @@ if (process.env.PORT) {
   port = 3000
 }
 
-const server = new PonyGen()
+const server = new WebService()
 
 server.listen(port).then(() => {
   console.log(`Server started on http://localhost:${port}`)
