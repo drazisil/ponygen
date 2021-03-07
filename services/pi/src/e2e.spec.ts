@@ -87,7 +87,7 @@ it("Raw API - pony", async (done) => {
     .expect(200)
     .end((err, res) => {
       if (err) throw err;
-      expect(res.body.ID).toEqual(1);
+      expect(res.body.id).toEqual(1);
       done();
     });
 });
