@@ -29,7 +29,7 @@ export function apiRawHome(req: Request, res: Response): void {
 export async function apiRawPony(req: Request, res: Response): Promise<void> {
   const id = req.params.id;
 
-  const pony = await Pony.fetchById(Number.parseInt(id))
+  const pony = await Pony.fetchById(Number.parseInt(id, 10))
   
   const data = pony.asJSON()
 
