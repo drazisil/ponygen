@@ -1,4 +1,4 @@
-import WebService from './src/services/web'
+import WebService from './src'
 
 let port:number
 
