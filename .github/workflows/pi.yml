@@ -31,7 +31,7 @@ jobs:
       # uses: codecov/codecov-action@e156083f13aff6830c92fc5faa23505779fbf649
       uses: codecov/codecov-action@v1.2.1
       with:
-        directory: services/web
+        directory: services/pi
         name: PI Service
         flags: pi
 
