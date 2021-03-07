@@ -1,16 +1,16 @@
 import request from "supertest";
-import PonyGen from "./";
+import WebService from "./index";
 
-it("Server - can start and stop", async (done) => {
-  const server = new PonyGen();
-  expect(server.server()).toBeNull
-  expect(await server.listen(2001)).resolves
-  expect(server.isRunning()).toBeTruthy;
+it("WebService - can start and stop", async (done) => {
+  const webService = new WebService();
+  expect(webService.server()).toBeNull
+  expect(await webService.listen(2001)).resolves
+  expect(webService.isRunning()).toBeTruthy;
 
-  await server
+  await webService
     .close()
     .then(() => {
-      expect(server.isRunning()).toBeFalsy;
+      expect(webService.isRunning()).toBeFalsy;
       done();
     })
     .catch((err) => {
@@ -19,8 +19,8 @@ it("Server - can start and stop", async (done) => {
 
 });
 
-it("Server - can start", async (done) => {
-  const server = new PonyGen();
+it("WebService - can start", async (done) => {
+  const server = new WebService();
   server
     .listen(1818)
     .then(() => {
@@ -32,14 +32,14 @@ it("Server - can start", async (done) => {
     });
 });
 
-it("Server - can throw on bad close", async (done) => {
-  const server = new PonyGen();
+it("WebService - can throw on bad close", async (done) => {
+  const server = new WebService();
   await expect(server.close()).rejects.toThrowError(/not running/);
   done();
 });
 
 it("Index", (done) => {
-  request(new PonyGen()._express)
+  request(new WebService()._express)
     .get("/about")
     .expect(200)
     .end((err, res) => {
@@ -50,7 +50,7 @@ it("Index", (done) => {
 });
 
 it("API", async (done) => {
-  request(new PonyGen()._express)
+  request(new WebService()._express)
     .get("/api")
     .expect(200)
     .end((err, res) => {
@@ -61,7 +61,7 @@ it("API", async (done) => {
 });
 
 it("Raw API - home", async (done) => {
-  request(new PonyGen()._express)
+  request(new WebService()._express)
     .get("/api/raw")
     .expect(200)
     .end((err, res) => {
@@ -72,7 +72,7 @@ it("Raw API - home", async (done) => {
 });
 
 it("Raw API - pony", async (done) => {
-  request(new PonyGen()._express)
+  request(new WebService()._express)
     .get("/api/raw/pony/1")
     .expect("Content-Type", /json/)
     .expect(200)
