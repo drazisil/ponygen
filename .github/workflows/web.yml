@@ -33,6 +33,5 @@ jobs:
       with:
         directory: services/web
         name: Web Service
-        flags:
-          - web
+        flags: web
 

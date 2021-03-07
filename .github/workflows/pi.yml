@@ -33,6 +33,5 @@ jobs:
       with:
         directory: services/web
         name: PI Service
-        flags:
-          - pi
+        flags: pi
 
