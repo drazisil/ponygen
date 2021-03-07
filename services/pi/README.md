@@ -1,3 +1,3 @@
 # ponygen
 
-[![Node.js CI](https://github.com/drazisil/ponygen/actions/workflows/node.js.yml/badge.svg)](https://github.com/drazisil/ponygen/actions/workflows/node.js.yml) [![codecov](https://codecov.io/gh/drazisil/ponygen/branch/main/graph/badge.svg?token=GYOHU3V68U)](https://codecov.io/gh/drazisil/ponygen) [![GitHub license](https://img.shields.io/github/license/drazisil/ponygen)](https://github.com/drazisil/ponygen/blob/main/LICENSE)
+[![PI Service CI](https://github.com/drazisil/ponygen/actions/workflows/pi.yml/badge.svg)](https://github.com/drazisil/ponygen/actions/workflows/[o].yml) [![codecov](https://codecov.io/gh/drazisil/ponygen/branch/main/graph/badge.svg?token=GYOHU3V68U)](https://codecov.io/gh/drazisil/ponygen) [![GitHub license](https://img.shields.io/github/license/drazisil/ponygen)](https://github.com/drazisil/ponygen/blob/main/LICENSE)
