@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/drazisil/ponygen/compare/v1.1.1...v1.2.0) (2021-03-07)
+
+
+### Features
+
+* **services/web:** change ponygen into service ([e0591c0](https://github.com/drazisil/ponygen/commit/e0591c01357fa669538cf13eb7cfe6a6c7cf4c70))
+
+
+### Bug Fixes
+
+* **pi:** change to error functions ([33a1c7c](https://github.com/drazisil/ponygen/commit/33a1c7c226d7788f1aef6b46df266cad54b13e95))
+* **web:** change to error functions ([7f64238](https://github.com/drazisil/ponygen/commit/7f642386f8a86c0652fb7fc5d8ab06e1394c89ab))
+* change main name from server to app ([5e06f30](https://github.com/drazisil/ponygen/commit/5e06f304667bbe60b7ab8d9b08dbf68545e3c3fb))
+
 ### [1.1.1](https://github.com/drazisil/ponygen/compare/v1.1.0...v1.1.1) (2021-03-06)
 
 
