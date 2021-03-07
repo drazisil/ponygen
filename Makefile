@@ -1,17 +1,25 @@
 all:
 
+install: web.install pi.install
+
 test: web.test pi.test
 
 release: web.release pi.release
 
+web.install:
+	cd services/web && \
+	npm ci
+
+pi.install:
+	cd services/pi && \
+	npm ci
+
 web.test:
 	cd services/web && \
-	npm ci && \
 	npm test
 
 pi.test:
 	cd services/pi && \
-	npm ci && \
 	npm test
 
 web.start: web.test
