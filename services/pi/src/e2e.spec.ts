@@ -91,3 +91,15 @@ it("Raw API - pony", async (done) => {
       done();
     });
 });
+
+it("Raw API - breed", async (done) => {
+  request(new PIService()._express)
+    .get("/breed/4")
+    .expect("Content-Type", /json/)
+    .expect(200)
+    .end((err, res) => {
+      if (err) throw err;
+      expect(res.body.Name).toEqual('EarthPony');
+      done();
+    });
+});
