@@ -13,18 +13,18 @@ export class RGBValue {
     
     constructor(rgb: string) {
         if (rgb.length !== 6) {
-            throw new RangeError(`length is not correct. must be exactly 5 characters long`)
+            throw new RangeError(`length is not correct. must be exactly 6 characters long`)
         }
-        const color = this._splitIntoRGB(rgb)
+        const color = RGBValue._splitIntoRGB(rgb)
         this._r = color.r
         this._g = color.g;
         this._b = color.b;
 
     }
 
-    _splitIntoRGB(fullHex: string): RGB {
+    static _splitIntoRGB(fullHex: string): RGB {
         const parts = fullHex.match(/.{2}/g)
-        if (parts?.length !== 3) {
+        if (parts === null || parts.length !== 3) {
             throw new RangeError(`not the correct number of parts`);            
         }
         return {
