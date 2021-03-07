@@ -1,6 +1,6 @@
 import express from "express";
 import { Server } from "node:http";
-import routeHome from "../routes";
+import routeHome from "./routes";
 
 export default class WebService {
   _isRunning = false;
