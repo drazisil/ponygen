@@ -7,7 +7,7 @@ router.get('/api/raw', apiRawHome)
 router.use('/api', apiHome)
 
 // define the about route
-router.get('/about', function (req, res) {
+router.get('/about', (req, res) => {
   res.send('About birds')
 })
 
