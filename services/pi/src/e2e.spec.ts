@@ -1,16 +1,16 @@
 import request from "supertest";
-import WebService from "./index";
+import PIService from "./index";
 
-it("WebService - can start and stop", async (done) => {
-  const webService = new WebService();
-  expect(webService.server()).toBeNull;
-  expect(await webService.listen(2001)).resolves;
-  expect(webService.isRunning()).toBeTruthy;
+it("PIService - can start and stop", async (done) => {
+  const piService = new PIService();
+  expect(piService.server()).toBeNull;
+  expect(await piService.listen(2001)).resolves;
+  expect(piService.isRunning()).toBeTruthy;
 
-  await webService
+  await piService
     .close()
     .then(() => {
-      expect(webService.isRunning()).toBeFalsy;
+      expect(piService.isRunning()).toBeFalsy;
       done();
     })
     .catch((err) => {
@@ -18,8 +18,8 @@ it("WebService - can start and stop", async (done) => {
     });
 });
 
-it("WebService - can start", async (done) => {
-  const server = new WebService();
+it("PIService - can start", async (done) => {
+  const server = new PIService();
   server
     .listen(1818)
     .then(() => {
@@ -31,14 +31,24 @@ it("WebService - can start", async (done) => {
     });
 });
 
-it("WebService - can throw on bad close", async (done) => {
-  const server = new WebService();
+it("PIService - can throw on bad close", async (done) => {
+  const server = new PIService();
   await expect(server.close()).rejects.toThrowError(/not running/);
   done();
 });
 
 it("Index", (done) => {
-  request(new WebService()._express)
+  request(new PIService()._express)
+    .get("/")
+    .expect(404)
+    .end((err) => {
+      if (err) throw err;
+      done();
+    });
+});
+
+it("About", (done) => {
+  request(new PIService()._express)
     .get("/about")
     .expect(200)
     .end((err, res) => {
@@ -49,7 +59,7 @@ it("Index", (done) => {
 });
 
 it("API", async (done) => {
-  request(new WebService()._express)
+  request(new PIService()._express)
     .get("/api")
     .expect(200)
     .end((err, res) => {
@@ -60,7 +70,7 @@ it("API", async (done) => {
 });
 
 it("Raw API - home", async (done) => {
-  request(new WebService()._express)
+  request(new PIService()._express)
     .get("/api/raw")
     .expect(200)
     .end((err, res) => {
@@ -71,7 +81,7 @@ it("Raw API - home", async (done) => {
 });
 
 it("Raw API - pony", async (done) => {
-  request(new WebService()._express)
+  request(new PIService()._express)
     .get("/api/raw/pony/1")
     .expect("Content-Type", /json/)
     .expect(200)
