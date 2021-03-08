@@ -82,12 +82,12 @@ it("Raw API - home", async (done) => {
 
 it("Raw API - pony", async (done) => {
   request(new PIService()._express)
-    .get("/api/raw/pony/1")
+    .get("/api/raw/pony/44428505")
     .expect("Content-Type", /json/)
     .expect(200)
     .end((err, res) => {
       if (err) throw err;
-      expect(res.body.id).toEqual(1);
+      expect(res.body.name).toContain('Daddy! <3')
       done();
     });
 });
@@ -100,6 +100,18 @@ it("Raw API - breed", async (done) => {
     .end((err, res) => {
       if (err) throw err;
       expect(res.body.Name).toEqual('EarthPony');
+      done();
+    });
+});
+
+it("Raw API - getMap should throw when passed an incorrect mapType ", async (done) => {
+  request(new PIService()._express)
+    .get("/sex/4")
+    .expect("Content-Type", /json/)
+    .expect(500)
+    .end((err, res) => {
+      if (err) throw err;
+      expect(res.body.message).toMatch(/not a valid mapType/);
       done();
     });
 });
