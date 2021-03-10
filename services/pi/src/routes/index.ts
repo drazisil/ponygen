@@ -11,7 +11,8 @@ router.get("/about", (req, res) => {
   res.send("About birds");
 });
 
-router.get("/:type/:id", apiRawMap);
 router.get("/pony/:id", apiRawPony);
+router.get("/:type/:id", apiRawMap);
+
 
 export default router;
