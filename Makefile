@@ -30,6 +30,15 @@ pi.start: pi.test
 	cd services/pi && \
 	npm start	
 
+web.start.only:
+	cd services/web && \
+	npm start	
+
+
+pi.start.only:
+	cd services/pi && \
+	npm start	
+
 web.release:
 	cd services/web && \
 	npm run release
