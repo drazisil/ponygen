@@ -15,19 +15,26 @@ export function apiRawHome(req: Request, res: Response): void {
 export async function apiRawPony(req: Request, res: Response): Promise<void> {
   const id = req.params.id;
 
-  const pony = new Pony()
-  await pony.fetchById(Number.parseInt(id, 10));
+  try {
+    const pony = new Pony();
+    await pony.fetchById(Number.parseInt(id, 10));
 
-  const data = pony.asJSON();
+    const data = pony.asJSON();
 
-  res.json(data);
+    res.json(data);
+  } catch (error) {
+    res.status(500).json({
+      status: 500,
+      message: error.message,
+    });
+  }
 }
 
 export async function apiRawMap(req: Request, res: Response): Promise<void> {
   const type = req.params.type;
 
   try {
-  const id = Number.parseInt(req.params.id, 10);
+    const id = Number.parseInt(req.params.id, 10);
 
     const data = await getMap(type, id);
     res.json(data);
@@ -39,9 +46,8 @@ export async function apiRawMap(req: Request, res: Response): Promise<void> {
   }
 }
 
-
-
 export async function getMap(type: string, id: number): Promise<PIMapJSON> {
+
   if (!MapTypes.includes(type)) {
     throw new Error(`${type} is not a valid mapType`);
   }
