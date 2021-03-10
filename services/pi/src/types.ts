@@ -21,6 +21,15 @@ export interface PIMapJSON {
   Name: string;
 }
 
+export interface ICacheMap {
+    [breed: string]: CacheMapEntry[]
+}
+
+export interface CacheMapEntry {
+    id: number
+    name: string
+}
+
 export interface ColorObject {
   eyes: RGBValue;
   hair: RGBValue;

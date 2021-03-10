@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import got from "got";
+import { MapTypes } from "../CacheMap";
 import { Pony } from "../Pony";
 import { PIMapJSON, PIPonyJSON } from "../types";
 
@@ -14,7 +15,8 @@ export function apiRawHome(req: Request, res: Response): void {
 export async function apiRawPony(req: Request, res: Response): Promise<void> {
   const id = req.params.id;
 
-  const pony = await Pony.fetchById(Number.parseInt(id, 10));
+  const pony = new Pony()
+  await pony.fetchById(Number.parseInt(id, 10));
 
   const data = pony.asJSON();
 
@@ -23,9 +25,10 @@ export async function apiRawPony(req: Request, res: Response): Promise<void> {
 
 export async function apiRawMap(req: Request, res: Response): Promise<void> {
   const type = req.params.type;
-  const id = Number.parseInt(req.params.id, 10);
 
   try {
+  const id = Number.parseInt(req.params.id, 10);
+
     const data = await getMap(type, id);
     res.json(data);
   } catch (error) {
@@ -36,10 +39,13 @@ export async function apiRawMap(req: Request, res: Response): Promise<void> {
   }
 }
 
-// TODO: these should be cache methods
 
-export async function getPony(id: number): Promise<PIPonyJSON> {
-  const { body } = await got.get(`http://get.ponyisland.net?pony=${id}`, {
+
+export async function getMap(type: string, id: number): Promise<PIMapJSON> {
+  if (!MapTypes.includes(type)) {
+    throw new Error(`${type} is not a valid mapType`);
+  }
+  const { body } = await got.get(`http://get.ponyisland.net?${type}=${id}`, {
     headers: {
       "user-agent": `ponygen (https://github.com/drazisil/ponygen)`,
     },
@@ -47,13 +53,8 @@ export async function getPony(id: number): Promise<PIPonyJSON> {
   return JSON.parse(body);
 }
 
-export const mapTypes = ["breed"];
-
-export async function getMap(type: string, id: number): Promise<PIMapJSON> {
-  if (!mapTypes.includes(type)) {
-    throw new Error(`${type} is not a valid mapType`);
-  }
-  const { body } = await got.get(`http://get.ponyisland.net?${type}=${id}`, {
+export async function getPony(id: number): Promise<PIPonyJSON> {
+  const { body } = await got.get(`http://get.ponyisland.net?pony=${id}`, {
     headers: {
       "user-agent": `ponygen (https://github.com/drazisil/ponygen)`,
     },

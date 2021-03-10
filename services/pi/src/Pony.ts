@@ -1,3 +1,4 @@
+import { CacheMap } from "./CacheMap";
 import { getPony } from "./routes/api";
 import { ColorObject, PonyJSON, RGB } from "./types";
 
@@ -38,16 +39,22 @@ export class Pony {
   _gender: string | undefined;
   _colors: ColorObject | undefined;
   _genes: string[] | undefined;
+  _cache = new CacheMap();
 
-  static async fetchById(id: number): Promise<Pony> {
+  async fetchById(id: number): Promise<void> {
     const rawPony = await getPony(id);
 
-    const pony = new Pony();
-    pony._id = rawPony.ID;
-    pony._name = rawPony.Name;
-    pony._breed = rawPony.BreedID;
-    pony._gender = rawPony.Gender;
-    pony._colors = {
+    this._id = rawPony.ID;
+    this._name = rawPony.Name;
+    const breedName = await this._cache.getMapName('breed', Number.parseInt(rawPony.BreedID))
+    if (breedName !== null) {
+    this._breed = breedName    
+    } else {
+    this._breed = rawPony.BreedID;
+
+    }
+    this._gender = rawPony.Gender;
+    this._colors = {
       eyes: new RGBValue(rawPony.Colors.Eyes),
       hair: new RGBValue(rawPony.Colors.Hair),
       hair2: new RGBValue(rawPony.Colors.Hair2),
@@ -55,9 +62,7 @@ export class Pony {
       extra1: new RGBValue(rawPony.Colors.Extra1),
       extra2: new RGBValue(rawPony.Colors.Extra2),
     };
-    pony._genes = rawPony.Genes;
-
-    return pony;
+    this._genes = rawPony.Genes;
   }
 
   asJSON(): PonyJSON {
