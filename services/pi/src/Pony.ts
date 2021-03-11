@@ -48,7 +48,7 @@ export class Pony {
     this._name = rawPony.Name;
           const breedName = await this._cache.getMapName(
             "breed",
-            Number.parseInt(rawPony.BreedID)
+            Number.parseInt(rawPony.BreedID, 10)
           );
               this._breed = breedName; 
 
