@@ -46,8 +46,13 @@ export class Pony {
 
     this._id = rawPony.ID;
     this._name = rawPony.Name;
-    const breedName = await this._cache.getMapName('breed', Number.parseInt(rawPony.BreedID))
-    this._breed = breedName    
+          const breedName = await this._cache.getMapName(
+            "breed",
+            Number.parseInt(rawPony.BreedID)
+          );
+              this._breed = breedName; 
+
+   
     this._gender = rawPony.Gender;
     this._colors = {
       eyes: new RGBValue(rawPony.Colors.Eyes),

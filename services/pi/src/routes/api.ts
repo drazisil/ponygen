@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import got from "got";
-import { MapTypes } from "../CacheMap";
+import { CacheMap, MapTypes } from "../CacheMap";
 import { Pony } from "../Pony";
 import { PIMapJSON, PIPonyJSON } from "../types";
 
@@ -35,8 +35,9 @@ export async function apiRawMap(req: Request, res: Response): Promise<void> {
 
   try {
     const id = Number.parseInt(req.params.id, 10);
+    const cacheMap = new CacheMap()
 
-    const data = await getMap(type, id);
+    const data = await cacheMap.getMap(type, id);
     res.json(data);
   } catch (error) {
     res.status(500).json({

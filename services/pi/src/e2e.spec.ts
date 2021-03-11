@@ -80,6 +80,18 @@ it("Raw API - home", async (done) => {
     });
 });
 
+it("API - /pony fails when provided an invalid id", async (done) => {
+  request(new PIService()._express)
+    .get("/pony/fred")
+    .expect("Content-Type", /json/)
+    .expect(500)
+    .end((err, res) => {
+      if (err) throw err;
+      expect(res.body.message).toContain("NaN is not a number");
+      done();
+    });
+});
+
 it("Raw API - pony", async (done) => {
   request(new PIService()._express)
     .get("/api/raw/pony/44428505")
@@ -87,19 +99,19 @@ it("Raw API - pony", async (done) => {
     .expect(200)
     .end((err, res) => {
       if (err) throw err;
-      expect(res.body.name).toContain('Daddy! <3')
+      expect(res.body.name).toContain("Daddy! <3");
       done();
     });
 });
 
-it("Raw API - breed", async (done) => {
+it("API - breed", async (done) => {
   request(new PIService()._express)
     .get("/breed/4")
     .expect("Content-Type", /json/)
     .expect(200)
     .end((err, res) => {
       if (err) throw err;
-      expect(res.body.Name).toEqual('EarthPony');
+      expect(res.body.name).toEqual('EarthPony');
       done();
     });
 });
