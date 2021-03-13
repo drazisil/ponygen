@@ -1,9 +1,10 @@
 import express from "express";
-import { apiHome, apiRawMap, apiRawPony } from "./api";
+import { apiHome, apiList, apiMap, apiPony } from "./api";
 const router = express.Router();
 
-router.get("/pony/:id", apiRawPony);
-router.get("/:type/:id", apiRawMap);
+router.get("/list/:type", apiList);
+router.get("/pony/:id", apiPony);
+router.get("/:type/:id", apiMap);
 
 router.use("/", apiHome);
 

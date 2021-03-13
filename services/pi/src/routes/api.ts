@@ -4,11 +4,15 @@ import { CacheMap, MapTypes } from "../CacheMap";
 import { Pony } from "../Pony";
 import { PIMapJSON, PIPonyJSON } from "../types";
 
+export function apiList(req: Request, res: Response): void {
+  res.send("API Home");
+}
+
 export function apiHome(req: Request, res: Response): void {
   res.send("API Home");
 }
 
-export async function apiRawPony(req: Request, res: Response): Promise<void> {
+export async function apiPony(req: Request, res: Response): Promise<void> {
   const id = req.params.id;
 
   try {
@@ -26,7 +30,7 @@ export async function apiRawPony(req: Request, res: Response): Promise<void> {
   }
 }
 
-export async function apiRawMap(req: Request, res: Response): Promise<void> {
+export async function apiMap(req: Request, res: Response): Promise<void> {
   const type = req.params.type;
 
   try {
