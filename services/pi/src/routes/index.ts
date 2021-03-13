@@ -1,17 +1,11 @@
-import express from 'express'
-import { apiHome, apiRawBreed, apiRawHome, apiRawPony } from './api'
-const router = express.Router()
+import express from "express";
+import { apiHome, apiList, apiMap, apiPony } from "./api";
+const router = express.Router();
 
-router.get('/api/raw/pony/:id', apiRawPony)
-router.get('/api/raw', apiRawHome)
-router.use('/api', apiHome)
+router.get("/list/:type", apiList);
+router.get("/pony/:id", apiPony);
+router.get("/:type/:id", apiMap);
 
-// define the about route
-router.get('/about', (req, res) => {
-  res.send('About birds')
-})
+router.use("/", apiHome);
 
-router.get("/breed/:id", apiRawBreed);
-router.get("/pony/:id", apiRawPony);
-
-export default router
+export default router;

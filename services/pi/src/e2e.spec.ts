@@ -37,69 +37,61 @@ it("PIService - can throw on bad close", async (done) => {
   done();
 });
 
-it("Index", (done) => {
+it("API - home", async (done) => {
   request(new PIService()._express)
     .get("/")
-    .expect(404)
-    .end((err) => {
-      if (err) throw err;
-      done();
-    });
-});
-
-it("About", (done) => {
-  request(new PIService()._express)
-    .get("/about")
     .expect(200)
     .end((err, res) => {
       if (err) throw err;
-      expect(res.text).toContain("About");
+      expect(res.text).toContain("API Home");
       done();
     });
 });
 
-it("API", async (done) => {
+it("API - /pony fails when provided an invalid id", async (done) => {
   request(new PIService()._express)
-    .get("/api")
-    .expect(200)
+    .get("/pony/fred")
+    .expect("Content-Type", /json/)
+    .expect(500)
     .end((err, res) => {
       if (err) throw err;
-      expect(res.text).toContain("API");
+      expect(res.body.message).toContain("NaN is not a number");
       done();
     });
 });
 
-it("Raw API - home", async (done) => {
+it("API - pony", async (done) => {
   request(new PIService()._express)
-    .get("/api/raw")
-    .expect(200)
-    .end((err, res) => {
-      if (err) throw err;
-      expect(res.text).toContain("Raw");
-      done();
-    });
-});
-
-it("Raw API - pony", async (done) => {
-  request(new PIService()._express)
-    .get("/api/raw/pony/1")
+    .get("/pony/44428505")
     .expect("Content-Type", /json/)
     .expect(200)
     .end((err, res) => {
       if (err) throw err;
-      expect(res.body.id).toEqual(1);
+      expect(res.body.name).toContain("Daddy! <3");
       done();
     });
 });
 
-it("Raw API - breed", async (done) => {
+it("API - breed", async (done) => {
   request(new PIService()._express)
     .get("/breed/4")
     .expect("Content-Type", /json/)
     .expect(200)
     .end((err, res) => {
       if (err) throw err;
-      expect(res.body.Name).toEqual('EarthPony');
+      expect(res.body.name).toEqual('EarthPony');
+      done();
+    });
+});
+
+it("API - getMap should throw when passed an incorrect mapType ", async (done) => {
+  request(new PIService()._express)
+    .get("/sex/4")
+    .expect("Content-Type", /json/)
+    .expect(500)
+    .end((err, res) => {
+      if (err) throw err;
+      expect(res.body.message).toMatch(/not a valid mapType/);
       done();
     });
 });

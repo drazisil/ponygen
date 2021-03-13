@@ -1,4 +1,4 @@
-import WebService from './src/index'
+import PIService from "./src/index";
 
 let port:number
 
@@ -8,10 +8,10 @@ if (process.env.PORT) {
   port = 3000
 }
 
-const server = new WebService()
+const server = new PIService();
 
 server.listen(port).then(() => {
-  console.log(`Server started on http://localhost:${port}`)
+  console.log(`PIService Server started on http://localhost:${port}`);
 }).catch((err) => {
   console.error(`Error starting server: ${err}`)
 })

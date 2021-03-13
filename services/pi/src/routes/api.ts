@@ -1,39 +1,63 @@
 import { Request, Response } from "express";
 import got from "got";
+import { CacheMap, MapTypes } from "../CacheMap";
 import { Pony } from "../Pony";
+import { PIMapJSON, PIPonyJSON } from "../types";
 
-export interface PIPonyJSON {
-  ID: number;
-  Name: string
-  BreedID: string
-  Gender: string
-  Colors: {
-    Eyes: string
-    Hair: string
-    Hair2: string
-    Body: string
-    Extra1: string
-    Extra2: string
-  };
-  Genes: string[];
+export function apiList(req: Request, res: Response): void {
+  res.send("API Home");
 }
 
 export function apiHome(req: Request, res: Response): void {
-  res.send("API birds");
+  res.send("API Home");
 }
 
-export function apiRawHome(req: Request, res: Response): void {
-  res.send("Raw API Home");
-}
-
-export async function apiRawPony(req: Request, res: Response): Promise<void> {
+export async function apiPony(req: Request, res: Response): Promise<void> {
   const id = req.params.id;
 
-  const pony = await Pony.fetchById(Number.parseInt(id, 10))
-  
-  const data = pony.asJSON()
+  try {
+    const pony = new Pony();
+    await pony.fetchById(Number.parseInt(id, 10));
 
-  res.json(data);
+    const data = pony.asJSON();
+
+    res.json(data);
+  } catch (error) {
+    res.status(500).json({
+      status: 500,
+      message: error.message,
+    });
+  }
+}
+
+export async function apiMap(req: Request, res: Response): Promise<void> {
+  const type = req.params.type;
+
+  try {
+    const id = Number.parseInt(req.params.id, 10);
+    const cacheMap = new CacheMap()
+
+    const data = await cacheMap.getMap(type, id);
+    res.json(data);
+  } catch (error) {
+    res.status(500).json({
+      status: 500,
+      message: error.message,
+    });
+  }
+}
+
+export async function getMap(type: string, id: number): Promise<PIMapJSON> {
+
+  if (!MapTypes.includes(type)) {
+    throw new Error(`${type} is not a valid mapType`);
+  }
+  const { body } = await got.get(`http://get.ponyisland.net?${type}=${id}`, {
+    headers: {
+      "user-agent": `ponygen (https://github.com/drazisil/ponygen)`,
+    },
+  });
+  return JSON.parse(body);
 }
 
 export async function getPony(id: number): Promise<PIPonyJSON> {
@@ -43,18 +67,4 @@ export async function getPony(id: number): Promise<PIPonyJSON> {
     },
   });
   return JSON.parse(body);
-
-
-}
-
-export async function apiRawBreed(req: Request, res: Response): Promise<void> {
-  const id = req.params.id;
-
-  const { body } = await got.get(`http://get.ponyisland.net?breed=${id}`, {
-    headers: {
-      "user-agent": `ponygen (https://github.com/drazisil/ponygen)`,
-    },
-  });
-  const data = JSON.parse(body);
-  res.json(data);
 }
