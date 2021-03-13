@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/drazisil/ponygen/compare/v1.1.2...v1.3.0) (2021-03-13)
+
+
+### Features
+
+* **pi:** create a cache map ([9c60151](https://github.com/drazisil/ponygen/commit/9c60151732202520561dee4c47454083a714fb56))
+* **pi:** create generic getMap endpoint ([c16da46](https://github.com/drazisil/ponygen/commit/c16da46b51af299878fdab371af636bbc9547d27))
+* **pi:** start crafting pony and color classes ([b7eba82](https://github.com/drazisil/ponygen/commit/b7eba82abf346743f0ba699a7914940bbff06fe4))
+
+
+### Bug Fixes
+
+* **pi:** add radix ([625b5f4](https://github.com/drazisil/ponygen/commit/625b5f499e2d64e899d1a3ca2ca1fb575b2b0f7d))
+* **pi:** add radix ([6f40b17](https://github.com/drazisil/ponygen/commit/6f40b17a433891a3c6a75d5c013243579c4bf2ad))
+* **pi:** change order so pony gets checked first ([a348f8d](https://github.com/drazisil/ponygen/commit/a348f8d10fc6f980bd10dc9539afc0b571256e4a))
+* **pi:** correct api and add more cache ([205b3c2](https://github.com/drazisil/ponygen/commit/205b3c2549b85e4b17ca6351fefb43586b0b768f))
+
 ## [1.2.0](https://github.com/drazisil/ponygen/compare/v1.1.2...v1.2.0) (2021-03-13)
 
 
