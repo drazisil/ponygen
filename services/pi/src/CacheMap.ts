@@ -1,7 +1,7 @@
 import { getMap } from "./routes/api";
 import { CacheMapEntry, ICacheMap } from "./types";
 
-export const MapTypes: string[] = ["breed"];
+export const MapTypes: string[] = ["breed", "gene"];
 
 export class CacheMap {
   _cacheMap: ICacheMap = {};
