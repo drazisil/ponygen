@@ -1,4 +1,4 @@
-import { RGBValue } from "./Pony";
+import { RGBValue } from './Pony';
 
 export interface PIPonyJSON {
   ID: number;

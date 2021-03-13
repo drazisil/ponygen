@@ -1,16 +1,18 @@
-import express from "express";
-import { Server } from "node:http";
-import routeHome from "./routes";
+import express from 'express';
+import { Server } from 'http';
+import routeHome from './routes';
 
 export default class PIService {
   _isRunning = false;
+
   _express = express();
+
   _server: null | Server = null;
 
   constructor() {
-    this._express.use("/", routeHome);
+    this._express.use('/', routeHome);
 
-    this._express.use(express.static("public"));
+    this._express.use(express.static('public'));
   }
 
   async listen(port: number): Promise<void> {
@@ -20,7 +22,7 @@ export default class PIService {
 
   async close(): Promise<void> {
     if (this._server === null) {
-      throw new Error("Attempted to close server when it was not running");
+      throw new Error('Attempted to close server when it was not running');
     }
     await this._server.close();
     this._isRunning = false;
