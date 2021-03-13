@@ -5,11 +5,7 @@ import { Pony } from "../Pony";
 import { PIMapJSON, PIPonyJSON } from "../types";
 
 export function apiHome(req: Request, res: Response): void {
-  res.send("API birds");
-}
-
-export function apiRawHome(req: Request, res: Response): void {
-  res.send("Raw API Home");
+  res.send("API Home");
 }
 
 export async function apiRawPony(req: Request, res: Response): Promise<void> {
