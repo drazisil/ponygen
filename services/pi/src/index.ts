@@ -1,15 +1,21 @@
 import express from 'express';
 import { Server } from 'http';
+import { CacheMap } from './CacheMap';
 import routeHome from './routes';
 
 export default class PIService {
   _isRunning = false;
-
+  _cache = new CacheMap()
   _express = express();
 
   _server: null | Server = null;
 
   constructor() {
+    this._express.use((req, _res, next) => {
+      req.cacheMap = this._cache
+      next()
+    })
+
     this._express.use('/', routeHome);
 
     this._express.use(express.static('public'));

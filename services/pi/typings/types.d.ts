@@ -1,4 +1,16 @@
-import { RGBValue } from './Pony';
+import { CacheMap } from '../src/CacheMap';
+import { RGBValue } from '../src/Pony';
+
+
+declare global {
+  export namespace Express {
+    export interface Request {
+      cacheMap: CacheMap
+    }
+
+  }
+
+}
 
 export interface PIPonyJSON {
   ID: number;
@@ -22,12 +34,12 @@ export interface PIMapJSON {
 }
 
 export interface ICacheMap {
-    [breed: string]: CacheMapEntry[]
+  [breed: string]: CacheMapEntry[]
 }
 
 export interface CacheMapEntry {
-    id: number
-    name: string
+  id: number
+  name: string
 }
 
 export interface ColorObject {
