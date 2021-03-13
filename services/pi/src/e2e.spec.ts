@@ -72,6 +72,19 @@ it('API - pony', async (done) => {
     });
 });
 
+it('API - listMaps should return an empty array when cache is empty', async (done) => {
+  request(new PIService()._express)
+    .get('/list/breed')
+    .expect('Content-Type', /json/)
+    .expect(200)
+    .end((err, res) => {
+      if (err) throw err;
+      expect(res.body.type).toEqual('breed');
+      expect(res.body.list.length).toEqual(0);
+      done();
+    });
+});
+
 it('API - breed', async (done) => {
   request(new PIService()._express)
     .get('/breed/4')

@@ -1,16 +1,21 @@
 import { getMap } from './routes/api';
-import { CacheMapEntry, ICacheMap } from './types';
+import { CacheMapEntry, ICacheMap } from '../typings/types';
 
 export const MapTypes: string[] = ['breed', 'gene'];
 
 export class CacheMap {
   _cacheMap: ICacheMap = {};
 
-  async getMapName(type: string, id: number): Promise<string> {
-    if (!this._cacheMap[type]) {
-      this._cacheMap[type] = [];
-    }
+  constructor() {
+    this._cacheMap['breed'] = []
+    this._cacheMap['gene'] = []
+  }
 
+  listMaps(type: string) {
+    return this._cacheMap[type]
+  }
+
+  async getMapName(type: string, id: number): Promise<string> {
     if (Number.isNaN(id) || id > Number.MAX_SAFE_INTEGER) {
       throw new Error(`${id} is not a number`);
     }

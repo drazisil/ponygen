@@ -1,6 +1,6 @@
 import { CacheMap } from './CacheMap';
 import { getPony } from './routes/api';
-import { ColorObject, PonyJSON, RGB } from './types';
+import { ColorObject, PonyJSON, RGB } from '../typings/types';
 
 export class RGBValue {
   _r: number | undefined;
