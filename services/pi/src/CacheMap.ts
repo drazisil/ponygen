@@ -1,7 +1,7 @@
-import { getMap } from "./routes/api";
-import { CacheMapEntry, ICacheMap } from "./types";
+import { getMap } from './routes/api';
+import { CacheMapEntry, ICacheMap } from './types';
 
-export const MapTypes: string[] = ["breed", "gene"];
+export const MapTypes: string[] = ['breed', 'gene'];
 
 export class CacheMap {
   _cacheMap: ICacheMap = {};
@@ -15,16 +15,14 @@ export class CacheMap {
       throw new Error(`${id} is not a number`);
     }
 
-    const mapEntry = this._cacheMap[type].find((entry: CacheMapEntry) => {
-      return entry.id === id;
-    });
+    const mapEntry = this._cacheMap[type].find((entry: CacheMapEntry) => entry.id === id);
 
     if (mapEntry === undefined) {
       // try to fetch from PI and populate cache
       const rawMap = await getMap(type, id);
       if (rawMap.Name === null) {
         throw new Error(
-          `Unable to locate an entry for ${type}.${id} on PonyIsland`
+          `Unable to locate an entry for ${type}.${id} on PonyIsland`,
         );
       }
       this._cacheMap[type].push({ id: rawMap.ID, name: rawMap.Name });
@@ -42,26 +40,22 @@ export class CacheMap {
       throw new Error(`${id} is not a number`);
     }
 
-    const mapEntry = this._cacheMap[type].find((entry: CacheMapEntry) => {
-      return entry.id === id;
-    });
+    const mapEntry = this._cacheMap[type].find((entry: CacheMapEntry) => entry.id === id);
 
     if (mapEntry === undefined) {
       // try to fetch from PI and populate cache
       const rawMap = await getMap(type, id);
       if (rawMap.Name === null) {
         throw new Error(
-          `Unable to locate an entry for ${type}.${id} on PonyIsland`
+          `Unable to locate an entry for ${type}.${id} on PonyIsland`,
         );
       }
       this._cacheMap[type].push({ id: rawMap.ID, name: rawMap.Name });
       return {
         id: rawMap.ID,
-        name: rawMap.Name
+        name: rawMap.Name,
       };
     }
     return mapEntry;
   }
 }
-
-

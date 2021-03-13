@@ -1,19 +1,19 @@
-import { Request, Response } from "express";
-import got from "got";
-import { CacheMap, MapTypes } from "../CacheMap";
-import { Pony } from "../Pony";
-import { PIMapJSON, PIPonyJSON } from "../types";
+import { Request, Response } from 'express';
+import got from 'got';
+import { CacheMap, MapTypes } from '../CacheMap';
+import { Pony } from '../Pony';
+import { PIMapJSON, PIPonyJSON } from '../types';
 
 export function apiList(req: Request, res: Response): void {
-  res.send("API Home");
+  res.send('API Home');
 }
 
 export function apiHome(req: Request, res: Response): void {
-  res.send("API Home");
+  res.send('API Home');
 }
 
 export async function apiPony(req: Request, res: Response): Promise<void> {
-  const id = req.params.id;
+  const { id } = req.params;
 
   try {
     const pony = new Pony();
@@ -31,11 +31,11 @@ export async function apiPony(req: Request, res: Response): Promise<void> {
 }
 
 export async function apiMap(req: Request, res: Response): Promise<void> {
-  const type = req.params.type;
+  const { type } = req.params;
 
   try {
     const id = Number.parseInt(req.params.id, 10);
-    const cacheMap = new CacheMap()
+    const cacheMap = new CacheMap();
 
     const data = await cacheMap.getMap(type, id);
     res.json(data);
@@ -48,13 +48,12 @@ export async function apiMap(req: Request, res: Response): Promise<void> {
 }
 
 export async function getMap(type: string, id: number): Promise<PIMapJSON> {
-
   if (!MapTypes.includes(type)) {
     throw new Error(`${type} is not a valid mapType`);
   }
   const { body } = await got.get(`http://get.ponyisland.net?${type}=${id}`, {
     headers: {
-      "user-agent": `ponygen (https://github.com/drazisil/ponygen)`,
+      'user-agent': 'ponygen (https://github.com/drazisil/ponygen)',
     },
   });
   return JSON.parse(body);
@@ -63,7 +62,7 @@ export async function getMap(type: string, id: number): Promise<PIMapJSON> {
 export async function getPony(id: number): Promise<PIPonyJSON> {
   const { body } = await got.get(`http://get.ponyisland.net?pony=${id}`, {
     headers: {
-      "user-agent": `ponygen (https://github.com/drazisil/ponygen)`,
+      'user-agent': 'ponygen (https://github.com/drazisil/ponygen)',
     },
   });
   return JSON.parse(body);
