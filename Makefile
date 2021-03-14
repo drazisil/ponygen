@@ -1,5 +1,10 @@
 all:
 
+clean: web.clean api.clean
+
+docker: clean
+	docker-compose up --build
+
 build: web.build api.build
 
 install: web.install api.install
@@ -7,6 +12,12 @@ install: web.install api.install
 test: web.test api.test
 
 release: web.release api.release
+
+web.clean:
+	rm -rf services/web/built
+
+api.clean:
+	rm -rf services/api/built
 
 web.build: web.install
 	cd services/web && \
@@ -56,7 +67,6 @@ web.release:
 api.release:
 	cd services/api && \
 	npm run release
-
 
 api.docker: api.build
 	cd services/api && \
