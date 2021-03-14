@@ -1,0 +1,21 @@
+version: '3.9'
+services: 
+  web:
+    build: ./services/web
+    environment: 
+      PORT: '3000'
+    ports: 
+    - '80:3000'
+    networks: 
+      - default
+      - ponygen
+  api:
+    build: ./services/api
+    environment: 
+      PORT: '80'
+    networks: 
+      - ponygen
+
+networks: 
+  default:
+  ponygen:

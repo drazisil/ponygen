@@ -1,48 +1,63 @@
 all:
 
-install: web.install pi.install
+build: web.build api.build
 
-test: web.test pi.test
+install: web.install api.install
 
-release: web.release pi.release
+test: web.test api.test
+
+release: web.release api.release
+
+web.build: web.install
+	cd services/web && \
+	npm run build
+
+api.build: api.install
+	cd services/api && \
+	npm run build
+
 
 web.install:
 	cd services/web && \
 	npm ci
 
-pi.install:
-	cd services/pi && \
+api.install:
+	cd services/api && \
 	npm ci
 
 web.test:
 	cd services/web && \
 	npm test
 
-pi.test:
-	cd services/pi && \
+api.test:
+	cd services/api && \
 	npm test
 
 web.start: web.test
 	cd services/web && \
 	npm start	
 
-pi.start: pi.test
-	cd services/pi && \
+api.start: api.test
+	cd services/api && \
 	npm start	
 
 web.start.only:
 	cd services/web && \
 	npm start	
 
-
-pi.start.only:
-	cd services/pi && \
+api.start.only:
+	cd services/api && \
 	npm start	
 
 web.release:
 	cd services/web && \
 	npm run release
 
-pi.release:
-	cd services/pi && \
+api.release:
+	cd services/api && \
 	npm run release
+
+
+api.docker: api.build
+	cd services/api && \
+	docker build -t drazisil:ponygen_api --no-cache=true .
