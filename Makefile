@@ -1,48 +1,73 @@
 all:
 
-install: web.install pi.install
+clean: web.clean api.clean
 
-test: web.test pi.test
+docker: clean
+	@docker-compose up --build
 
-release: web.release pi.release
+build: web.build api.build
+
+install: web.install api.install
+
+test: web.test api.test
+
+release: web.release api.release
+
+web.clean:
+	rm -rf services/web/built
+
+api.clean:
+	rm -rf services/api/built
+
+web.build: web.install
+	@cd services/web && \
+	npm run build
+
+api.build: api.install
+	@cd services/api && \
+	npm run build
+
 
 web.install:
-	cd services/web && \
+	@cd services/web && \
 	npm ci
 
-pi.install:
-	cd services/pi && \
+api.install:
+	@cd services/api && \
 	npm ci
 
-web.test:
-	cd services/web && \
+web.test: web.clean
+	@cd services/web && \
 	npm test
 
-pi.test:
-	cd services/pi && \
+api.test: api.clean
+	@cd services/api && \
 	npm test
 
 web.start: web.test
-	cd services/web && \
+	@cd services/web && \
 	npm start	
 
-pi.start: pi.test
-	cd services/pi && \
+api.start: api.test
+	@cd services/api && \
 	npm start	
 
 web.start.only:
-	cd services/web && \
+	@cd services/web && \
 	npm start	
 
-
-pi.start.only:
-	cd services/pi && \
+api.start.only:
+	@cd services/api && \
 	npm start	
 
 web.release:
-	cd services/web && \
+	@cd services/web && \
 	npm run release
 
-pi.release:
-	cd services/pi && \
+api.release:
+	@cd services/api && \
 	npm run release
+
+api.docker: api.build
+	@cd services/api && \
+	docker build -t drazisil:ponygen_api --no-cache=true .

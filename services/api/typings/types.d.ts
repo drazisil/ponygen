@@ -37,6 +37,10 @@ export interface ICacheMap {
   [breed: string]: CacheMapEntry[]
 }
 
+export interface MapCountEntry {
+  [type: string]: number
+}
+
 export interface CacheMapEntry {
   id: number
   name: string

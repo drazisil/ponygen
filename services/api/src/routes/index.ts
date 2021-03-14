@@ -1,10 +1,11 @@
 import express from 'express';
 import {
-  apiHome, apiList, apiMap, apiPony,
+  apiHome, apiList, apiMap, apiPony, apiSync,
 } from './api';
 
 const router = express.Router();
 
+router.get('/sync/:type', apiSync);
 router.get('/list/:type', apiList);
 router.get('/pony/:id', apiPony);
 router.get('/:type/:id', apiMap);

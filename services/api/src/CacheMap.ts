@@ -1,15 +1,30 @@
 import { getMap } from './routes/api';
-import { CacheMapEntry, ICacheMap } from '../typings/types';
+import { CacheMapEntry, ICacheMap, MapCountEntry } from '../typings/types';
 
 export const MapTypes: string[] = ['breed', 'gene'];
 
 export class CacheMap {
   _cacheMap: ICacheMap = {};
+  _maxMaps: MapCountEntry = {}
 
   constructor() {
     this._cacheMap['breed'] = []
     this._cacheMap['gene'] = []
+    this._maxMaps['breed'] = 100
+    this._maxMaps['gene'] = 100
   }
+
+
+  async syncMaps(type: string): Promise<void> {
+    for (let index = 1; index < this._maxMaps[type]; index++) {
+      try {
+        await this.getMapName(type, index)
+      } catch (error) {
+        break
+      }      
+    }
+  }
+
 
   listMaps(type: string) {
     return this._cacheMap[type]
