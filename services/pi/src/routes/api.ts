@@ -14,6 +14,15 @@ export function apiList(req: Request, res: Response): void {
   })
 }
 
+export function apiSync(req: Request, res: Response): void {
+  const { type } = req.params;
+  const cacheMap = req.cacheMap
+
+  cacheMap.syncMaps(type)
+
+  res.json({ status: 'success', message: `started sync for map type: ${type}` })
+}
+
 export function apiHome(req: Request, res: Response): void {
   res.send('API Home');
 }
