@@ -1,7 +1,7 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: Pi Service CI
+name: API Service CI
 
 on:
   push:
@@ -30,9 +30,9 @@ jobs:
     - name: Codecov
       # You may pin to the exact commit or the version.
       # uses: codecov/codecov-action@e156083f13aff6830c92fc5faa23505779fbf649
-      uses: codecov/codecov-action@v1.2.1
+      uses: codecov/codecov-action@v1.2.2
       with:
-        directory: services/pi
-        name: PI Service
-        flags: pi
+        directory: services/api
+        name: API Service
+        flags: api
 
