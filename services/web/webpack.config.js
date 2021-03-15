@@ -1,18 +1,18 @@
 const path = require('path');
-const webpack = require("webpack");
-var nodeExternals = require('webpack-node-externals');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     mode: 'development',
-    target: "node",
-    entry: './src/index.js',
+    entry: {
+        index: "./src/index.js"
+    },
     module: {
         rules: [
             {
                 test: /\.(js|jsx)$/,
-                exclude: /(node_modules|bower_components)/,
+                exclude: /node_modules/,
                 loader: "babel-loader",
-                options: { presets: ["@babel/preset-env"]}
+                options: { presets: ["@babel/preset-env"] }
             },
             {
                 test: /\.css$/,
@@ -21,19 +21,23 @@ module.exports = {
 
         ]
     },
-    resolve: { extensions: ["*", "*.js", "*.jsx"] },
     output: {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, 'dist/'),
-        publicPath: "/dist/",
+        filename: '[name].bundle.js',
+        path: path.resolve(__dirname, 'dist'),
         clean: true
     },
     devServer: {
-        contentBase: path.join(__dirname, "public/"),
+        contentBase: path.resolve(__dirname, "public/"),
+        headers: {
+            'Cache-Control': 'no-cache'
+        },
         port: 3000,
-        publicPath: "http://localhost:3000/dist/",
-        // hotOnly: true
+        writeToDisk: true,
+        hot: true
     },
-    plugins: [ new webpack.HotModuleReplacementPlugin() ],
-    externals: [nodeExternals()]
+    plugins: [
+        new HtmlWebpackPlugin({
+            title: 'PonyGen 2',
+            template: './src/index.html'
+        })]
 };
