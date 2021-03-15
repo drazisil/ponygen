@@ -3,21 +3,17 @@ module.exports = {
     es2021: true,
     node: true,
     jest: true,
-    browser: true,
-    react: true
+    browser: true
   },
-  extends: ['eslint:recommended', 'plugin:import/errors', 'plugin:import/warnings', 'plugin:import/typescript'],
+  extends: ['eslint:recommended', "plugin:react/recommended"],
   parserOptions: {
     ecmaVersion: 12,
     sourceType: 'module',
   },
-  rules: {
-    'import/extensions': ['error', 'never', { sts: 'always' }],
-  },
+  rules: {},
   settings: {
-    'import/extensions': [
-      '.js',
-      '.ts',
-    ],
-  },
+    react: {
+      "version": "detect"
+    }
+  }
 };
