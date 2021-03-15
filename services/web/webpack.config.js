@@ -1,5 +1,4 @@
 const path = require('path');
-const { node } = require('webpack');
 const webpack = require("webpack");
 var nodeExternals = require('webpack-node-externals');
 
