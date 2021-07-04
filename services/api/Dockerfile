@@ -1,4 +1,4 @@
-FROM node:15.11.0-buster
+FROM node:15.14.0-buster
 
 ENV PORT=3000
 
